@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "Skate"
-include("app")
+include("skate-core")
