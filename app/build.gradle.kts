@@ -6,7 +6,9 @@
  */
 
 plugins {
-    // Apply the application plugin to add support for building a CLI application in Java.
+    id ("org.springframework.boot") version "3.5.0"
+    id ("io.spring.dependency-management") version "1.1.0"
+    id ("java")
     application
 }
 
@@ -16,8 +18,18 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.flywaydb:flyway-core:11.8.2")
+    implementation("org.flywaydb:flyway-database-postgresql:11.8.2")
+
+
+    implementation("com.zaxxer:HikariCP:6.3.0")
+    runtimeOnly("org.postgresql:postgresql")
+
     // Use JUnit Jupiter for testing.
-    testImplementation(libs.junit.jupiter)
+    testImplementation("org.junit.jupiter:junit-jupiter:junit-jupiter:5.3.10")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
@@ -31,7 +43,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "org.salamandrio.skate.infrastructure.Application"
 }
 
 tasks.named<Test>("test") {
